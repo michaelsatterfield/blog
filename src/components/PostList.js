@@ -3,6 +3,10 @@ import { connect} from "react-redux";
 import { fetchPost } from "../actions";
 
 class PostList extends Component {
+    componentDidMount() {
+        this.props.fetchPost()
+    }
+
     render() {
         return (
             <div>
@@ -12,4 +16,4 @@ class PostList extends Component {
     }
 }
 
-export default PostList;
+export default connect(null, {fetchPost})(PostList);
