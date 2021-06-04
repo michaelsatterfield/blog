@@ -1,13 +1,10 @@
 import jsonPlaceholder from "../apis/jsonPlaceholder";
 
-//action creator
+//action creator with thunk middleware
 export const fetchPost = () => {
-    return function (dispatch, getState) {
-        const promise = jsonPlaceholder.get('/posts')
+    return async function (dispatch, getState) {
+        const response = await jsonPlaceholder.get('/posts')
 
-        return {
-            type: 'FETCH_POSTS',
-            payload: promise
-        }
+      dispatch({ type:'FETCH_POSTS', payload: response})
     };
 };
