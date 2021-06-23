@@ -8,3 +8,10 @@ export const fetchPost = () => async dispatch => {
     dispatch({type: 'FETCH_POSTS', payload: response.data})
 };
 
+
+//action creator api to return users by id
+export const fetchUser = (id) => async dispatch => {
+    const response = await jsonPlaceholder.get(`/users/${id}`);
+
+    dispatch({type: 'FETCH_USER', payload: response.data})
+};
