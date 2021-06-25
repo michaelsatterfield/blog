@@ -1,6 +1,17 @@
 import _ from 'lodash'
 import jsonPlaceholder from "../apis/jsonPlaceholder";
 
+
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+    await dispatch(fetchPost())
+
+    //lodash used to find unique ids!
+ const userIds =_.uniq(_.map(getState().posts,'userId'))
+    console.log(userIds)
+    userIds.forEach(id => dispatch(fetchUser(id)))
+}
+
+
 //action creator with thunk middleware
 // asynchronous api action creator!!
 export const fetchPost = () => async dispatch => {
